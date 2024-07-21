@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Search</title>
+</head>
+<body>
+    <h1>IP Search</h1>
+    <form id="searchForm">
+        <input type="text" id="ipInput" placeholder="Enter IP address" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const ip = document.getElementById('ipInput').value;
+            const response = await fetch(`/api/search?ip=${ip}`);
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 4);
+        });
+    </script>
+</body>
+</html>
